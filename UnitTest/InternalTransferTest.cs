@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using KTG.Functions;
 using KTG.Models;
 using Xunit;
@@ -81,6 +82,38 @@ namespace UnitTest
 
             var actual = internalTransfer.Collect(orders);
             var expected = new List<int> { 4, 2 };
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TestCase6()
+        {
+            var orders = new List<Order> {
+                new Order{ Id = 0,  Quantity = 4205,  Price = 1 },
+                new Order{ Id = 1,  Quantity = 6434,  Price = 1 },
+                new Order{ Id = 2,  Quantity = 1977,  Price = 1 },
+                new Order{ Id = 3,  Quantity = 7104,  Price = 1 },
+                new Order{ Id = 4,  Quantity = 5315,  Price = 1 },
+                new Order{ Id = 5,  Quantity = 1517,  Price = 1 },
+                new Order{ Id = 6,  Quantity = 2217,  Price = 1 },
+                new Order{ Id = 7,  Quantity = 1828,  Price = 1 },
+                new Order{ Id = 8,  Quantity = -1332, Price = 1 },
+                new Order{ Id = 9,  Quantity = -2881, Price = 1 },
+                new Order{ Id = 10, Quantity = -7346, Price = 1 },
+                new Order{ Id = 11, Quantity = -4637, Price = 1 },
+            };
+
+            var expected = new List<int> { 0, 2, 6, 7, 9, 10 };
+
+            // to prove that the expected set sums to zero
+            var sanityCheck =
+                expected
+                .Select(id => orders.First(o => o.Id == id).Quantity)
+                .Sum();
+            Assert.Equal(0, sanityCheck);
+
+            var actual = internalTransfer.Collect(orders);
 
             Assert.Equal(expected, actual);
         }
