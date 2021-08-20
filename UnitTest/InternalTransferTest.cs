@@ -117,5 +117,33 @@ namespace UnitTest
 
             Assert.Equal(expected, actual);
         }
+
+
+        [Fact]
+        public void TestCase7()
+        {
+            var orders = new List<Order> {
+                new Order{ Id = 0,  Quantity = 10,  Price = 1 },
+                new Order{ Id = 1,  Quantity = 6,   Price = 1 },
+                new Order{ Id = 2,  Quantity = 2,   Price = 1 },
+                new Order{ Id = 3,  Quantity = -4,  Price = 1 },
+                new Order{ Id = 4,  Quantity = -3,  Price = 1 },
+                new Order{ Id = 5,  Quantity = -2,  Price = 1 },
+                new Order{ Id = 6,  Quantity = -19, Price = 1 },
+            };
+
+            var expected = new List<int> { 1, 3, 5 };
+
+            // to prove that the expected set sums to zero
+            var sanityCheck =
+                expected
+                .Select(id => orders.First(o => o.Id == id).Quantity)
+                .Sum();
+            Assert.Equal(0, sanityCheck);
+
+            var actual = internalTransfer.Collect(orders);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
