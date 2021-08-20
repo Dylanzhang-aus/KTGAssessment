@@ -33,6 +33,13 @@ namespace UnitTest
             var actual = internalTransfer.Collect(orders);
             var expected = new List<int> { 1, 2, 3, 4, 5 };
 
+            //added by Paul
+            var sanityCheck =
+                expected
+                .Select(id => orders.First(o => o.Id == id).Quantity)
+                .Sum();
+            Assert.Equal(0, sanityCheck);
+
             Assert.Equal(expected, actual);
         }
 
@@ -58,6 +65,13 @@ namespace UnitTest
             var actual = internalTransfer.Collect(orders);
             var expected = new List<int> { 1, 2, 3, 5 };
 
+            //added by Paul
+            var sanityCheck =
+                expected
+                .Select(id => orders.First(o => o.Id == id).Quantity)
+                .Sum();
+            Assert.Equal(0, sanityCheck);
+
             Assert.Equal(expected, actual);
         }
 
@@ -81,7 +95,15 @@ namespace UnitTest
             List<Order> orders = new() { order2, order3, order4, order10 };
 
             var actual = internalTransfer.Collect(orders);
-            var expected = new List<int> { 4, 2 };
+
+            var expected = new List<int> { 2, 4 };
+
+            //added by Paul
+            var sanityCheck =
+                expected
+                .Select(id => orders.First(o => o.Id == id).Quantity)
+                .Sum();
+            Assert.Equal(0, sanityCheck);
 
             Assert.Equal(expected, actual);
         }

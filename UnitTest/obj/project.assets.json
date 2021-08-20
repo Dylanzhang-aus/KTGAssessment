@@ -5938,11 +5938,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/spunk/Projects/KTG/UnitTest/UnitTest.csproj",
+      "projectUniqueName": "/Users/spunk/Projects/KTGAssessment/UnitTest/UnitTest.csproj",
       "projectName": "UnitTest",
-      "projectPath": "/Users/spunk/Projects/KTG/UnitTest/UnitTest.csproj",
+      "projectPath": "/Users/spunk/Projects/KTGAssessment/UnitTest/UnitTest.csproj",
       "packagesPath": "/Users/spunk/.nuget/packages/",
-      "outputPath": "/Users/spunk/Projects/KTG/UnitTest/obj/",
+      "outputPath": "/Users/spunk/Projects/KTGAssessment/UnitTest/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/spunk/.config/NuGet/NuGet.Config"
@@ -5957,8 +5957,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/spunk/Projects/KTG/KTG/KTG.csproj": {
-              "projectPath": "/Users/spunk/Projects/KTG/KTG/KTG.csproj"
+            "/Users/spunk/Projects/KTGAssessment/KTG/KTG.csproj": {
+              "projectPath": "/Users/spunk/Projects/KTGAssessment/KTG/KTG.csproj"
             }
           }
         }

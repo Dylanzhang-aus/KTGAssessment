@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+HHEYblQW1IzPjJABiC+QPoUQHU8FMOhvtCt4aXWlH6kpcxawZt+D6GUb5d2UMk/XAvSYLXqhfy0V1MeeGEH/Q==",
+  "dgSpecHash": "pCo0+PiBGE3HhffQiepZo+/+3XCMlNhzykXkjJqrzyvm+d6mroBfDeNVto1FxuYkd7vGo/5HchFhxYlA+AA7aQ==",
   "success": true,
-  "projectFilePath": "/Users/spunk/Projects/KTG/UnitTest/UnitTest.csproj",
+  "projectFilePath": "/Users/spunk/Projects/KTGAssessment/UnitTest/UnitTest.csproj",
   "expectedPackageFiles": [
     "/Users/spunk/.nuget/packages/coverlet.collector/3.0.2/coverlet.collector.3.0.2.nupkg.sha512",
     "/Users/spunk/.nuget/packages/microsoft.codecoverage/16.9.4/microsoft.codecoverage.16.9.4.nupkg.sha512",
