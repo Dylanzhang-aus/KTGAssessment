@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/spunk/Projects/KTG/KTG/KTG.csproj": {}
+    "/Users/spunk/Projects/KTGAssessment/KTG/KTG.csproj": {}
   },
   "projects": {
-    "/Users/spunk/Projects/KTG/KTG/KTG.csproj": {
+    "/Users/spunk/Projects/KTGAssessment/KTG/KTG.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/spunk/Projects/KTG/KTG/KTG.csproj",
+        "projectUniqueName": "/Users/spunk/Projects/KTGAssessment/KTG/KTG.csproj",
         "projectName": "KTG",
-        "projectPath": "/Users/spunk/Projects/KTG/KTG/KTG.csproj",
+        "projectPath": "/Users/spunk/Projects/KTGAssessment/KTG/KTG.csproj",
         "packagesPath": "/Users/spunk/.nuget/packages/",
-        "outputPath": "/Users/spunk/Projects/KTG/KTG/obj/",
+        "outputPath": "/Users/spunk/Projects/KTGAssessment/KTG/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/spunk/.config/NuGet/NuGet.Config"

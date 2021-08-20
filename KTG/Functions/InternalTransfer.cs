@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KTG.Models;
 
@@ -7,74 +8,62 @@ namespace KTG.Functions
 {
     public class InternalTransfer
     {
+
         public List<int> Collect(List<Order> orders)
         {
             List<int> results = new();
-            List<Order> tempBox = new();
-            List<Order> sellingOrders = new();
-            List<Order> buyingOrders = new();
 
-            //Separate buying orders and selling orders
-            foreach (var order in orders)
+            //collect all possible combination in "orders", store inside "tempBox".
+            var TotolCount = (int)Math.Pow(2, orders.Count) - 1;
+
+            //A temporary box to store all possible combinations
+            List<List<Order>> tempBox = new();
+
+            for (int i = 1; i <= TotolCount + 1; i++)
             {
-                if (order.Quantity > 0)
-                {
-                    buyingOrders.Add(order);
-                }
-                else if (order.Quantity < 0)
-                {
-                    sellingOrders.Add(order);
-                }
-            }
+                //The combination like : [order1, order2] or [order3, order6, order9] etc..
+                List<Order> combination = new();
 
-            //The quantity of the order is extracted from the collection of buying order,
-            //and offsetting is realized with the quantity of the order in selling order.
-            foreach (var buyingOrder in buyingOrders)
-            {
-
-                foreach (var sellingOrder in sellingOrders)
+                //combining
+                for (int j = 0; j < orders.Count; j++)
                 {
-                    if (tempBox.Count >= 1)
+                    if ((i >> j) % 2 != 0)
                     {
-                        if (buyingOrder.Price == sellingOrder.Price)
-                        {
-                            tempBox.Add(sellingOrder);
-
-                            if (tempBox.Sum(o => o.Quantity) + buyingOrder.Quantity == 0)
-                            {
-                                results.Add(buyingOrder.Id);
-
-                                foreach (var tempOrder in tempBox)
-                                {
-                                    results.Add(tempOrder.Id);
-                                    sellingOrders.Remove(tempOrder);
-                                }
-                                tempBox.Clear();
-                                break;
-                            }
-                        }
+                        combination.Add(orders[j]);
                     }
-                    else
-                    {
-                        //If there is only one Selling order in the temporary box
-                        if (buyingOrder.Price == sellingOrder.Price)
-                        {
-                            tempBox.Add(sellingOrder);
+                }
 
-                            if (tempBox[0].Quantity + buyingOrder.Quantity == 0)
-                            {
-                                results.Add(buyingOrder.Id);
-                                results.Add(tempBox[0].Id);
-                                sellingOrders.Remove(tempBox[0]);
-                                tempBox.Clear();
-                                break;
-                            }
-                        }
+                //Grab combinations which the sum is zero and the size of combinations is not one.
+                //"conbination.Count>1" is to filter out orders with a zero order quantity,
+                //although this seems unlikely to happen.
+                if (combination.Count > 1 && combination.Sum(o => o.Quantity) == 0)
+                {
+                    var flag = combination.First().Price;
+                    if(combination.All(o => o.Price == flag))
+                    {
+                        tempBox.Add(combination);
                     }
                 }
             }
 
-            return results;
+            //If no suitable combination is found in the collection of Orders, the empty list is returned
+            if (tempBox.Count == 0)
+            {
+                return results;
+            }
+            else
+            {
+                //Arrange all possible combinations in descending order, taking the one with the largest size
+                var orderedTempBox = tempBox.OrderByDescending(o => o.Count).ToList();
+
+                foreach (var order in orderedTempBox[0])
+                {
+                    results.Add(order.Id);
+                }
+
+                return results;
+            }
+
         }
     }
 }
